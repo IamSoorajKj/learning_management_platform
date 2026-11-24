@@ -20,6 +20,10 @@ from django.urls import path
 from accounts.views import TrainerSignUpView
 from accounts.views import TrainerProfileRetrieveUpdateView
 
+from course_management.views import CourseListCreateView
+from course_management.views import CourseRetrieveUpdateDeleteView
+
+
 
 from rest_framework.authtoken.views import ObtainAuthToken
 
@@ -35,5 +39,10 @@ urlpatterns = [
     #profile
 
     path('trainer/profile/',TrainerProfileRetrieveUpdateView.as_view()),
+
+    #course
+
+    path('trainer/courses/',CourseListCreateView.as_view()),
+    path('trainer/course/<int:pk>/',CourseRetrieveUpdateDeleteView.as_view()),
 
 ]
