@@ -43,6 +43,7 @@ urlpatterns = [
     #course
 
     path('trainer/courses/',CourseListCreateView.as_view()),
+    
     path('trainer/course/<int:pk>/',CourseRetrieveUpdateDeleteView.as_view()),
 
 ]
