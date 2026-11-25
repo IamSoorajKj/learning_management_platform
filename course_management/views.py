@@ -16,22 +16,24 @@ from accounts.permissions import IsOwner
 
 class CourseListCreateView(ListCreateAPIView):
 
-  serializer_class=CourseSerializer
+  serializer_class=CourseSerializer #for create api view listapiview no need serializer_class
 
   authentication_classes=[authentication.TokenAuthentication]
 
   permission_classes=[permissions.IsAuthenticated]
 
   #overriding this method to get all courses of this user
-  def get_queryset(self):
+  def get_queryset(self): #listapiview
     
     return Course.objects.filter(trainer=self.request.user)
-
-  def perform_create(self, serializer):
+  #overriding this method bcz we need to save trainer when the obj created
+  def perform_create(self, serializer): #create api view
 
     serializer.save(trainer=self.request.user)
 
 class CourseRetrieveUpdateDeleteView(RetrieveUpdateDestroyAPIView):
+
+  queryset=Course.objects.all() #get obj
 
   authentication_classes=[authentication.TokenAuthentication]
 
@@ -39,9 +41,7 @@ class CourseRetrieveUpdateDeleteView(RetrieveUpdateDestroyAPIView):
 
   serializer_class=CourseSerializer
 
-  def get_queryset(self):
 
-    return Course.objects.filter(trainer=self.request.user)
 
 
 
