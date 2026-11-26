@@ -37,11 +37,4 @@ class ModuleRetrieveUpdateDeleteView(RetrieveUpdateDestroyAPIView):
 
   permission_classes=[permissions.IsAuthenticated]
 
-  def perform_update(self,serializer):
-
-    instance=serializer.instance
-
-    order=instance.order
-
-    serializer.save(order=order)
 

@@ -38,11 +38,14 @@ class Module(models.Model):
     def save(self, *args, **kwargs):
         module_instance = Module.objects.filter(course=self.course).last()
 
-        if module_instance:
+        #self=obj
+        if not self.id: #only need to increment order in module creation  not module update.in module creation dont need id .but in update nedd id .thats why using if not self.id condition
 
-            self.order = module_instance.order + 1
-        else:
-            self.order = 1
+            if module_instance:
+
+                self.order = module_instance.order + 1
+            else:
+                self.order = 1
 
         if not self.slug:
             self.slug = slugify(self.title)
