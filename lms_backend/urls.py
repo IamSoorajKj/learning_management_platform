@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path
 
 from accounts.views import TrainerSignUpView
-from accounts.views import TrainerProfileRetrieveUpdateView
+from accounts.views import TrainerProfileRetrieveUpdateView,StudentSignUpView,StudentProfileRetrieveUpdateView
 
 from course_management.views import CourseListCreateView
 from course_management.views import CourseRetrieveUpdateDeleteView
@@ -61,5 +61,10 @@ urlpatterns = [
     path('module/<int:pk>/lesson/',LessonCreateView.as_view()),
     
     path('lesson/<int:pk>/',LessonRetrieveUpdateDeleteView.as_view()),
+
+    #student
+
+    path('student/signup/',StudentSignUpView.as_view()),
+    path('student/profile/',StudentProfileRetrieveUpdateView.as_view()),
 
 ]
